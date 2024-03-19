@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 @MicronautTest
-class HelloControllerTest(@Client("/") val client: HttpClient) {
+class PartiesControllerTest(@Client("/") val client: HttpClient) {
 
     @Test
     fun testHello() {

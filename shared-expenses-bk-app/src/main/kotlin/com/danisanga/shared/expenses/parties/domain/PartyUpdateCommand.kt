@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.domain
+package com.danisanga.shared.expenses.parties.domain
 
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.validation.constraints.NotBlank
