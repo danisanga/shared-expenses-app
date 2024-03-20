@@ -19,6 +19,7 @@ data class Friend(
         @field:GeneratedValue(GeneratedValue.Type.UUID)
         var id: UUID = UUID.randomUUID(),
         var name: String,
+        var email: String,
         @DateCreated
-        var createdTime: LocalDate,
+        var creationTime: LocalDate,
 )
