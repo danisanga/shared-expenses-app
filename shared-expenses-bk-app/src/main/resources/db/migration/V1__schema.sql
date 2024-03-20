@@ -8,14 +8,14 @@ CREATE TABLE my_schema.parties
 (
     id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     name         VARCHAR(255) NOT NULL,
-    created_time TIMESTAMP    NOT NULL
+    creation_time TIMESTAMP    NOT NULL
 );
 
 -- CREATE TABLE my_schema.friends
 -- (
 --     id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
 --     name         VARCHAR(255) NOT NULL,
---     created_time TIMESTAMP    NOT NULL
+--     creation_time TIMESTAMP    NOT NULL
 -- );
 
 CREATE TABLE my_schema.expenses
@@ -25,7 +25,7 @@ CREATE TABLE my_schema.expenses
 --     friend_id    uuid           NOT NULL REFERENCES friends (id),
     quantity     DECIMAL(10, 8) NOT NULL,
     description  VARCHAR(255)   NOT NULL,
-    created_time TIMESTAMP      NOT NULL,
+    creation_time TIMESTAMP      NOT NULL,
 
     FOREIGN KEY (party_id) REFERENCES parties(id)
 

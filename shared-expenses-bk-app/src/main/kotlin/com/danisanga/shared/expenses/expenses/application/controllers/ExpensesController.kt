@@ -2,31 +2,27 @@ package com.danisanga.shared.expenses.expenses.application.controllers
 
 import com.danisanga.shared.expenses.expenses.application.dtos.CreateExpenseWsDTO
 import com.danisanga.shared.expenses.expenses.application.dtos.toDomain
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
-import com.danisanga.shared.expenses.expenses.domain.repositories.ExpensesRepository
-import com.danisanga.shared.expenses.parties.domain.entities.Party
-import com.danisanga.shared.expenses.parties.domain.repositories.PartiesRepository
+import com.danisanga.shared.expenses.expenses.domain.services.ExpensesService
+import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.MediaType
-import io.micronaut.http.annotation.*
+import io.micronaut.http.annotation.Body
+import io.micronaut.http.annotation.Controller
+import io.micronaut.http.annotation.Post
 import io.micronaut.scheduling.TaskExecutors
 import io.micronaut.scheduling.annotation.ExecuteOn
-import jakarta.validation.constraints.NotBlank
-import java.time.LocalDate
-import kotlin.jvm.optionals.getOrNull
 
 @ExecuteOn(TaskExecutors.BLOCKING)
 @Controller("/expenses")
 open class ExpensesController(
-        private val expensesRepository: ExpensesRepository,
-        private val partiesRepository: PartiesRepository
+        private val expensesService: ExpensesService,
+        private val partiesService: PartiesService
 ) {
 
     @Post("/create")
     open fun createExpense(@Body("expense") expense: CreateExpenseWsDTO) : HttpResponse<CreateExpenseWsDTO> {
         val expenseDomain = expense.toDomain()
-        expenseDomain.party = partiesRepository.findById(expense.party).getOrNull();
-        expensesRepository.save(expenseDomain)
+        expenseDomain.party = partiesService.getPartyOrThrowException(expense.party);
+        expensesService.createExpense(expenseDomain)
         return HttpResponse
                 .created(expense)
     }

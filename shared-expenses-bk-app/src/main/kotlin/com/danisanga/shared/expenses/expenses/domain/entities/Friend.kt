@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.parties.domain.entities
+package com.danisanga.shared.expenses.expenses.domain.entities
 
 import io.micronaut.data.annotation.DateCreated
 import io.micronaut.data.annotation.GeneratedValue

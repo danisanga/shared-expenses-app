@@ -1,10 +1,11 @@
-package com.danisanga.shared.expenses.parties.domain.entities
+package com.danisanga.shared.expenses.expenses.domain.entities
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
-import io.micronaut.data.annotation.*
+import io.micronaut.data.annotation.DateCreated
+import io.micronaut.data.annotation.GeneratedValue
+import io.micronaut.data.annotation.Id
+import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.CascadeType
-import jakarta.persistence.FetchType
 import jakarta.persistence.OneToMany
 import java.time.LocalDate
 import java.util.*
@@ -17,7 +18,7 @@ data class Party(
         var id: UUID = UUID.randomUUID(),
         var name: String,
         @DateCreated
-        var createdTime: LocalDate,
+        var creationTime: LocalDate,
         @OneToMany(mappedBy = "party", cascade = [CascadeType.ALL], orphanRemoval = true)
         var expenses: Set<Expense> = HashSet()
 )

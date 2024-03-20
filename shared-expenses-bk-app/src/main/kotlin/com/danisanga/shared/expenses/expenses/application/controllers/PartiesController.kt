@@ -1,7 +1,7 @@
-package com.danisanga.shared.expenses.parties.application
+package com.danisanga.shared.expenses.expenses.application.controllers
 
-import com.danisanga.shared.expenses.parties.domain.entities.Party
-import com.danisanga.shared.expenses.parties.domain.repositories.PartiesRepository
+import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import io.micronaut.core.annotation.NonNull
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
@@ -14,24 +14,22 @@ import io.micronaut.scheduling.annotation.ExecuteOn
 import jakarta.validation.constraints.NotBlank
 import java.time.LocalDate
 import java.util.*
-import kotlin.jvm.optionals.getOrNull
 
 @ExecuteOn(TaskExecutors.BLOCKING)
 @Controller("/parties")
-open class PartiesController(private val partiesRepository: PartiesRepository) {
-
+open class PartiesController (
+        private val partiesService: PartiesService
+) {
     @Post("/create")
     open fun createParty(@Body("name") @NotBlank name: String) : HttpResponse<Party> {
-        val party = partiesRepository.save(name, LocalDate.now())
-
+        val party = partiesService.createParty(name)
         return HttpResponse
                 .created(party)
     }
 
     @Get("/{id}")
-    open fun getParty(@QueryValue @NotBlank id: UUID) : @NonNull Optional<Party>? {
-        val party = partiesRepository.findById(id)
-        var expenses = party.getOrNull()?.expenses
+    open fun getParty(@QueryValue @NotBlank id: UUID) : Party? {
+        val party = partiesService.getPartyOrThrowException(id)
         return party
     }
 }
