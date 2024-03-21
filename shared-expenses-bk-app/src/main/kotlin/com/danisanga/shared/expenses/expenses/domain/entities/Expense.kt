@@ -1,24 +1,24 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
-import io.micronaut.data.annotation.*
-import io.micronaut.data.annotation.sql.JoinColumn
+import com.fasterxml.jackson.annotation.JsonIgnore
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.persistence.FetchType
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
 import java.time.LocalDate
 import java.util.*
 
 @Serdeable
-@MappedEntity(value = "expenses")
+@Entity
+@Table(name = "expenses")
 data class Expense(
-        @field:Id
-        @field:GeneratedValue(GeneratedValue.Type.UUID)
-        var id: UUID = UUID.randomUUID(),
+        @Id
+        @GeneratedValue(strategy = GenerationType.UUID)
+        var id: UUID?,
         var quantity: Double,
         var description: String,
-        @DateCreated
         var creationTime: LocalDate,
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "party_id")
-        var party: Party?
+        @JsonIgnore
+        @ManyToOne
+        var party: Party?,
+//        @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//        var friend: Friend?
 )

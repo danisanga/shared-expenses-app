@@ -1,25 +1,21 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
-import io.micronaut.data.annotation.DateCreated
-import io.micronaut.data.annotation.GeneratedValue
-import io.micronaut.data.annotation.Id
-import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.persistence.FetchType
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
-import java.math.BigDecimal
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import java.time.LocalDate
 import java.util.*
 
 @Serdeable
-@MappedEntity(value = "friends")
+@Entity
+@Table(name = "friends")
 data class Friend(
-        @field:Id
-        @field:GeneratedValue(GeneratedValue.Type.UUID)
+        @Id
+        @GeneratedValue
         var id: UUID = UUID.randomUUID(),
         var name: String,
         var email: String,
-        @DateCreated
         var creationTime: LocalDate,
 )

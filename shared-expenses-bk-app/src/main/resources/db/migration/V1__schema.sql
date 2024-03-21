@@ -6,27 +6,31 @@ search_path TO my_schema;
 /* Tables */
 CREATE TABLE my_schema.parties
 (
-    id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-    name         VARCHAR(255) NOT NULL,
-    creation_time TIMESTAMP    NOT NULL
+    id            uuid PRIMARY KEY,
+    name          VARCHAR(255) NOT NULL,
+    creation_time TIMESTAMP DEFAULT current_timestamp
 );
 
--- CREATE TABLE my_schema.friends
--- (
---     id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
---     name         VARCHAR(255) NOT NULL,
---     creation_time TIMESTAMP    NOT NULL
--- );
+CREATE TABLE my_schema.friends
+(
+    id            uuid PRIMARY KEY,
+    name          VARCHAR(255) NOT NULL,
+    party_id      uuid         NOT NULL,
+    creation_time TIMESTAMP DEFAULT current_timestamp,
+
+    FOREIGN KEY (party_id) REFERENCES parties (id)
+);
 
 CREATE TABLE my_schema.expenses
 (
-    id           uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-    party_id     uuid           NOT NULL,
---     friend_id    uuid           NOT NULL REFERENCES friends (id),
-    quantity     DECIMAL(10, 8) NOT NULL,
-    description  VARCHAR(255)   NOT NULL,
-    creation_time TIMESTAMP      NOT NULL,
+    id            uuid PRIMARY KEY,
+    party_id      uuid           NOT NULL,
+--     friend_id     uuid           NOT NULL,
+    quantity      DECIMAL(10, 8) NOT NULL,
+    description   VARCHAR(255)   NOT NULL,
+    creation_time TIMESTAMP DEFAULT current_timestamp,
 
-    FOREIGN KEY (party_id) REFERENCES parties(id)
+    --     FOREIGN KEY (friend_id) REFERENCES friends (id),
+    FOREIGN KEY (party_id) REFERENCES parties (id)
 
 );

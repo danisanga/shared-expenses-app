@@ -13,6 +13,7 @@ data class CreateExpenseWsDTO(
 )
 
 fun CreateExpenseWsDTO.toDomain() = Expense(
+        id = null,
         quantity = quantity,
         description = description,
         party = null,

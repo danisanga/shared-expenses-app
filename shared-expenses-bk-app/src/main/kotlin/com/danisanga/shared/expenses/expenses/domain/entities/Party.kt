@@ -1,24 +1,28 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
-import io.micronaut.data.annotation.DateCreated
-import io.micronaut.data.annotation.GeneratedValue
-import io.micronaut.data.annotation.Id
-import io.micronaut.data.annotation.MappedEntity
+import com.danisanga.shared.expenses.expenses.application.dtos.PartyResponseWsDTO
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.persistence.CascadeType
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 import java.time.LocalDate
 import java.util.*
 
-@Serdeable
-@MappedEntity(value = "parties")
-data class Party(
-        @field:Id
-        @field:GeneratedValue(GeneratedValue.Type.UUID)
-        var id: UUID = UUID.randomUUID(),
+@Entity
+@Table(name = "parties")
+class Party(
+        @Id
+        @GeneratedValue
+        var id: UUID?,
         var name: String,
-        @DateCreated
-        var creationTime: LocalDate,
-        @OneToMany(mappedBy = "party", cascade = [CascadeType.ALL], orphanRemoval = true)
-        var expenses: Set<Expense> = HashSet()
+        @Column(name = "creation_time")
+        var creationTime: LocalDate?,
+        @OneToMany(mappedBy = "party", fetch = FetchType.EAGER)
+        var expenses: Set<Expense> = HashSet(),
+//        var friends: Set<Friend> = HashSet()
+)
+
+fun Party.toApplication() = PartyResponseWsDTO(
+        id = id,
+        name = name,
+        creationTime = creationTime,
+        expenses = expenses
 )

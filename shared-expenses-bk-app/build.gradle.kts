@@ -5,6 +5,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.3.4"
     id("io.micronaut.aot") version "4.3.4"
+
+    kotlin("plugin.jpa") version "1.9.23"
 }
 
 version = "0.1"
@@ -29,13 +31,18 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    implementation("jakarta.persistence:jakarta.persistence-api:3.2.0-M1")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("io.micronaut:micronaut-http-client")
+
+    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
+    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.6.2")
+
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
 
 }
 

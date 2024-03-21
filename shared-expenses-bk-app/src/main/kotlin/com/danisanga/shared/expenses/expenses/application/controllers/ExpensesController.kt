@@ -21,7 +21,7 @@ open class ExpensesController(
     @Post("/create")
     open fun createExpense(@Body("expense") expense: CreateExpenseWsDTO) : HttpResponse<CreateExpenseWsDTO> {
         val expenseDomain = expense.toDomain()
-        expenseDomain.party = partiesService.getPartyOrThrowException(expense.party);
+        expenseDomain.party = partiesService.getPartyOrThrowException(expense.party)!!;
         expensesService.createExpense(expenseDomain)
         return HttpResponse
                 .created(expense)
