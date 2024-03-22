@@ -17,5 +17,6 @@ fun CreateExpenseWsDTO.toDomain() = Expense(
         quantity = quantity,
         description = description,
         party = null,
+        friend = null,
         creationTime = LocalDate.now()
 )

@@ -20,10 +20,10 @@ open class PartiesController (
         private val partiesService: PartiesService
 ) {
     @Post("/create")
-    open fun createParty(@Body @NotNull request: CreatePartyWsDTO) : HttpResponse<Party> {
+    open fun createParty(@Body @NotNull request: CreatePartyWsDTO) : HttpResponse<PartyResponseWsDTO> {
         val party = partiesService.createParty(request.toDomain())
         return HttpResponse
-                .created(party)
+                .created(party?.toApplication())
     }
 
     @Get("/{id}")

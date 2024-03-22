@@ -17,12 +17,14 @@ class Party(
         var creationTime: LocalDate?,
         @OneToMany(mappedBy = "party", fetch = FetchType.EAGER)
         var expenses: Set<Expense> = HashSet(),
-//        var friends: Set<Friend> = HashSet()
+        @OneToMany(mappedBy = "party", fetch = FetchType.EAGER)
+        var friends: Set<Friend> = HashSet(),
 )
 
 fun Party.toApplication() = PartyResponseWsDTO(
         id = id,
         name = name,
         creationTime = creationTime,
-        expenses = expenses
+        expenses = expenses,
+        friends = friends
 )

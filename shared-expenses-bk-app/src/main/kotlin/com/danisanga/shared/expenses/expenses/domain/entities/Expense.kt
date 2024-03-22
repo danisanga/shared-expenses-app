@@ -19,6 +19,6 @@ data class Expense(
         @JsonIgnore
         @ManyToOne
         var party: Party?,
-//        @ManyToOne(optional = false, fetch = FetchType.LAZY)
-//        var friend: Friend?
+        @ManyToOne
+        var friend: Friend?
 )

@@ -31,19 +31,16 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
+    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.6.2")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("io.micronaut:micronaut-http-client")
-
-    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
-    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
-    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.6.2")
-
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
-
 }
 
 

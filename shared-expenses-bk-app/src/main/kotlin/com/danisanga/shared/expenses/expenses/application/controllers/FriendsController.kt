@@ -1,7 +1,10 @@
 package com.danisanga.shared.expenses.expenses.application.controllers
 
 import com.danisanga.shared.expenses.expenses.application.dtos.AddFriendWsDTO
+import com.danisanga.shared.expenses.expenses.application.dtos.FriendResponseWsDTO
 import com.danisanga.shared.expenses.expenses.application.dtos.toDomain
+import com.danisanga.shared.expenses.expenses.domain.entities.toApplication
+import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
@@ -11,18 +14,18 @@ import io.micronaut.scheduling.TaskExecutors
 import io.micronaut.scheduling.annotation.ExecuteOn
 
 @ExecuteOn(TaskExecutors.BLOCKING)
-@Controller("/expenses")
+@Controller("/friends")
 open class FriendsController(
+        private val friendsService: FriendsService,
         private val partiesService: PartiesService
 ) {
 
     @Post("/add-to-party")
-    open fun createAndAddFriendToParty(@Body("friend") request: AddFriendWsDTO) : HttpResponse<AddFriendWsDTO> {
-        val partyUUID = request.party
-        val party = partiesService.getPartyOrThrowException(partyUUID)
-//        val requestToDomain = request.toDomain()
-//        requestToDomain.party = party
+    open fun createAndAddFriendToParty(@Body request: AddFriendWsDTO) : HttpResponse<FriendResponseWsDTO> {
+        val friendToDomain = request.toDomain()
+        friendToDomain.party = partiesService.getPartyOrThrowException(request.party)!!;
+        val friend = friendsService.createFriend(friendToDomain)
         return HttpResponse
-                .created(request)
+                .created(friend?.toApplication())
     }
 }
