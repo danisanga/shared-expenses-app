@@ -10,8 +10,8 @@ import java.util.*
 @Serdeable
 data class FriendResponseWsDTO(
         var id: UUID?,
-        var name: String,
-        var email: String,
+        var name: String?,
+        var email: String?,
         var creationTime: LocalDate?,
         @JsonIgnore
         var party: Party?,

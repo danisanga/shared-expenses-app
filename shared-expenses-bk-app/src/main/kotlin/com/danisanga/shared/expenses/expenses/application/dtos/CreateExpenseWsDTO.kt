@@ -9,7 +9,8 @@ import java.util.*
 data class CreateExpenseWsDTO(
     var quantity: Double,
     var description: String,
-    var party: UUID
+    var party: UUID,
+    var friend: UUID
 )
 
 fun CreateExpenseWsDTO.toDomain() = Expense(

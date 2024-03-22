@@ -1,5 +1,6 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
+import com.danisanga.shared.expenses.expenses.application.dtos.ExpenseResponseWsDTO
 import com.fasterxml.jackson.annotation.JsonIgnore
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.*
@@ -9,7 +10,7 @@ import java.util.*
 @Serdeable
 @Entity
 @Table(name = "expenses")
-data class Expense(
+class Expense(
         @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         var id: UUID?,
@@ -20,5 +21,11 @@ data class Expense(
         @ManyToOne
         var party: Party?,
         @ManyToOne
+        @JsonIgnore
         var friend: Friend?
+)
+
+fun Expense.toApplication() = ExpenseResponseWsDTO(
+        id = id,
+        quantity = quantity
 )

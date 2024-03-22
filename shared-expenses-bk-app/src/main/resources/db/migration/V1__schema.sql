@@ -15,6 +15,7 @@ CREATE TABLE my_schema.friends
 (
     id            uuid PRIMARY KEY,
     name          VARCHAR(255) NOT NULL,
+    email          VARCHAR(255) NOT NULL,
     party_id      uuid         NOT NULL,
     creation_time TIMESTAMP DEFAULT current_timestamp,
 

@@ -1,7 +1,8 @@
 package com.danisanga.shared.expenses.expenses.domain.repositories
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Expense
-import io.micronaut.data.annotation.Join
+import com.danisanga.shared.expenses.expenses.domain.entities.Friend
+import io.micronaut.data.annotation.Query
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
 import java.util.*
@@ -9,6 +10,7 @@ import java.util.*
 @Repository
 interface ExpensesRepository : CrudRepository<Expense, UUID> {
 
-//    @Join(value = "party", type = Join.Type.FETCH)
-//    fun list(): List<Expense>
+    @Query("FROM Expense b WHERE b.friend = :friendId")
+    fun getExpensesForFriend(friendId: Friend?): List<Expense>
+
 }

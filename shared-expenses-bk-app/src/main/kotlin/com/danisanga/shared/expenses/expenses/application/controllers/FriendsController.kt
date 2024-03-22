@@ -7,11 +7,11 @@ import com.danisanga.shared.expenses.expenses.domain.entities.toApplication
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.annotation.Body
-import io.micronaut.http.annotation.Controller
-import io.micronaut.http.annotation.Post
+import io.micronaut.http.annotation.*
 import io.micronaut.scheduling.TaskExecutors
 import io.micronaut.scheduling.annotation.ExecuteOn
+import jakarta.validation.constraints.NotNull
+import java.util.*
 
 @ExecuteOn(TaskExecutors.BLOCKING)
 @Controller("/friends")
@@ -27,5 +27,11 @@ open class FriendsController(
         val friend = friendsService.createFriend(friendToDomain)
         return HttpResponse
                 .created(friend?.toApplication())
+    }
+
+    @Get("/{id}")
+    open fun getFriend(@QueryValue @NotNull id: UUID) : FriendResponseWsDTO? {
+        val friend = friendsService.getFriendOrThrowException(id)
+        return friend?.toApplication()
     }
 }
