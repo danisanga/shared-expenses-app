@@ -1,7 +1,6 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
 import com.danisanga.shared.expenses.expenses.application.dtos.PartyResponseWsDTO
-import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.*
 import java.time.LocalDate
 import java.util.*
@@ -25,6 +24,5 @@ fun Party.toApplication() = PartyResponseWsDTO(
         id = id,
         name = name,
         creationTime = creationTime,
-        expenses = expenses,
-        friends = friends
+        expenses = expenses
 )

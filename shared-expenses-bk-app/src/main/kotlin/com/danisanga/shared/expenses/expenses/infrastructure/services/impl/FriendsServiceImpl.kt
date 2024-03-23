@@ -1,6 +1,7 @@
 package com.danisanga.shared.expenses.expenses.infrastructure.services.impl
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendNotFoundException
 import com.danisanga.shared.expenses.expenses.domain.repositories.FriendsRepository
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
@@ -23,5 +24,9 @@ class FriendsServiceImpl (
     @Throws(FriendNotFoundException::class)
     override fun getFriendOrThrowException(id: UUID): Friend {
         return getFriend(id) ?: throw FriendNotFoundException("This is not your Friend!")
+    }
+
+    override fun getFriendsForParty(party: Party): List<Friend>? {
+        return friendsRepository.getFriendsForParty(party)
     }
 }

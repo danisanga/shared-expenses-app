@@ -24,6 +24,7 @@ class Friend(
         @JsonIgnore
         var party: Party?,
         @OneToMany(mappedBy = "friend", fetch = FetchType.EAGER)
+        @JsonIgnore
         var expenses: Set<Expense> = HashSet(),
 )
 

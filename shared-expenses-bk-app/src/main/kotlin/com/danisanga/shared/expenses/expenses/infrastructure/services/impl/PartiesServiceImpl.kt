@@ -5,7 +5,6 @@ import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyNotFoundExc
 import com.danisanga.shared.expenses.expenses.domain.repositories.PartiesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
-import java.time.LocalDate
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
@@ -14,7 +13,6 @@ class PartiesServiceImpl (
         private val partiesRepository: PartiesRepository
 ): PartiesService {
     override fun createParty(party: Party): Party? {
-//        return partiesRepository.save(name, LocalDate.now())
         return partiesRepository.save(party)
     }
 

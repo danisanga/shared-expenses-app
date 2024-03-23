@@ -27,5 +27,6 @@ class Expense(
 
 fun Expense.toApplication() = ExpenseResponseWsDTO(
         id = id,
-        quantity = quantity
+        quantity = quantity,
+        friend = friend
 )
