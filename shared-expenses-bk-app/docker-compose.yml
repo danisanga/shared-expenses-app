@@ -1,6 +1,20 @@
 version: '3.9'
 
 services:
+  micronaut-kt-app:
+    container_name: micronaut-app
+    links:
+      - postgres-db
+    depends_on:
+      - postgres-db
+    environment:
+      DB_HOST: postgres-db
+    ports:
+      - "8080:8080"
+    volumes:
+      - bk-gradle-cache:/home/gradle/.gradle
+    build: .
+
   postgres-db:
     container_name: postgres-db
     image: postgres:13.4-alpine
@@ -11,13 +25,7 @@ services:
       - bk-volume:/var/lib/postgresql/data
     env_file:
       - postgres.dev.env
-    networks:
-      internal-net:
 
 volumes:
   bk-volume:
   bk-gradle-cache:
-
-networks:
-  internal-net:
-    name: bk-net

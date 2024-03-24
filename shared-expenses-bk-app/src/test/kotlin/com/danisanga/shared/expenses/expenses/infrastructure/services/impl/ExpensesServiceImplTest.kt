@@ -4,6 +4,7 @@ import com.danisanga.shared.expenses.expenses.domain.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.repositories.ExpensesRepository
+import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.mockk
@@ -18,9 +19,10 @@ class ExpensesServiceImplTest {
     val PARTY_UUID = UUID.randomUUID()
     val EXPENSE_UUID = UUID.randomUUID()
 
+    private val friendsService: FriendsService = mockk<FriendsService>()
     private val expenseRepository: ExpensesRepository = mockk<ExpensesRepository>()
 
-    private val testObj = ExpensesServiceImpl(expenseRepository)
+    private val testObj = ExpensesServiceImpl(friendsService, expenseRepository)
 
     @Test
     fun `should return expected expenses for friend`() {
@@ -81,17 +83,35 @@ class ExpensesServiceImplTest {
 
     @Test
     fun `should create a new expense`() {
+        val partyStub = Party(
+                PARTY_UUID,
+                "party_name",
+                LocalDate.now(),
+                emptySet(),
+                emptySet()
+        )
+        val friendStub = Friend(
+                FRIEND_UUID,
+                "friend_name",
+                "friend_email",
+                LocalDate.now(),
+                partyStub,
+                emptySet()
+        )
         val expenseStub = Expense(
                 EXPENSE_UUID,
                 10.05,
                 "expense_desc",
                 LocalDate.now(),
-                null,
-                null
+                partyStub,
+                friendStub
         )
         every {
             expenseRepository.save(expenseStub)
         } returns expenseStub
+        every {
+            friendsService.getFriendsForParty(partyStub)
+        } returns listOf(friendStub)
 
         val result = testObj.createExpense(expenseStub)
 

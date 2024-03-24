@@ -82,5 +82,9 @@ micronaut {
     }
 }
 
+tasks.jar {
+    manifest.attributes["Main-Class"] = "com.danisanga.shared.expenses.Application"
+}
+
 
 

@@ -1,3 +1,6 @@
+
+docker-compose up -> Run docker-compose.yml
+
 ## Micronaut 4.3.6 Documentation
 
 - [User Guide](https://docs.micronaut.io/4.3.6/guide/index.html)

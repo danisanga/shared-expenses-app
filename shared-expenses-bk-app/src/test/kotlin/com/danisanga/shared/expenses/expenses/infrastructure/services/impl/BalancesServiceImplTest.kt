@@ -77,9 +77,9 @@ class BalancesServiceImplTest {
 
         val result = testObj.getTotalBalance(PARTY_UUID)
 
-        assert(result?.friendBalances?.get(0)?.quantity == 5.025)
+        assert(result?.friendBalances?.get(0)?.quantity == 5.0)
         assert(result?.friendBalances?.get(0)?.friend?.name == "friend_name")
-        assert(result?.friendBalances?.get(1)?.quantity == -5.025)
+        assert(result?.friendBalances?.get(1)?.quantity == -5.0)
         assert(result?.friendBalances?.get(1)?.friend?.name == "other_friend_name")
 
     }
