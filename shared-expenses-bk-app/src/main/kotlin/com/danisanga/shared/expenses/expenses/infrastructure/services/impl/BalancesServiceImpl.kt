@@ -8,6 +8,7 @@ import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
 import java.util.*
+import kotlin.math.round
 
 @Singleton
 class BalancesServiceImpl(
@@ -38,7 +39,7 @@ class BalancesServiceImpl(
                 }
                 val friendBalance = FriendBalance(
                         friend,
-                        sumOfBalance
+                        round(sumOfBalance)
                 )
                 balances.add(friendBalance)
             }
