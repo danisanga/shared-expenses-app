@@ -1,0 +1,15 @@
+<section>
+    <div>
+        <h2>Balance:</h2>
+        <div>
+            <ul class="balance">
+                <li *ngFor="let friendBalance of totalBalance.friendBalances">
+                    <div class="expense">
+                        {{friendBalance.friend.name}}
+                        {{friendBalance.quantity}}€
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
