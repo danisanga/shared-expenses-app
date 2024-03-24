@@ -21,7 +21,6 @@ class Expense(
         @ManyToOne
         var party: Party?,
         @ManyToOne
-        @JsonIgnore
         var friend: Friend?
 )
 
