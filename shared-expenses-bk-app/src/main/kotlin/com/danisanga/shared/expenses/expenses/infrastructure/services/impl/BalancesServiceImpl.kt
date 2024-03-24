@@ -45,7 +45,6 @@ class BalancesServiceImpl(
             val totalBalance = TotalBalance(balances)
             return totalBalance
         }
-
         return null
     }
 

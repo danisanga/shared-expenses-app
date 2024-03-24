@@ -33,13 +33,22 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.data:micronaut-data-tx-hibernate")
-    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.6.2")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("io.micronaut:micronaut-http-client")
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("io.mockk:mockk:1.13.8")
+
+    testImplementation("io.micronaut.test:micronaut-test-rest-assured")
+
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
 }
 
