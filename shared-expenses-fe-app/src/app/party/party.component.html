@@ -1,0 +1,18 @@
+<section>
+    <div>
+        <h2>Gastos:</h2>
+        <button type="button" onclick="">Añadir amigo</button>
+        <button type="button" onclick="">Añadir gasto</button>
+        <div>
+            <ul class="expenses">
+                <li *ngFor="let expense of party.expenses">
+                    <div class="expense">
+                        {{expense.friend.name}}
+                        {{expense.description}}
+                        {{expense.quantity}}€
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
