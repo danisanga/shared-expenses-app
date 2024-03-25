@@ -1,6 +1,5 @@
 package com.danisanga.shared.expenses.expenses.domain.entities
 
-import com.danisanga.shared.expenses.expenses.application.dtos.FriendResponseWsDTO
 import com.fasterxml.jackson.annotation.JsonIgnore
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.*
@@ -22,17 +21,5 @@ class Friend(
         var creationTime: LocalDate?,
         @ManyToOne
         @JsonIgnore
-        var party: Party?,
-        @OneToMany(mappedBy = "friend", fetch = FetchType.EAGER)
-        @JsonIgnore
-        var expenses: Set<Expense> = HashSet(),
-)
-
-fun Friend.toApplication() = FriendResponseWsDTO(
-        id = id,
-        name = name,
-        email = email,
-        creationTime = creationTime,
-        party = party,
-        expenses = expenses
+        var party: Party?
 )

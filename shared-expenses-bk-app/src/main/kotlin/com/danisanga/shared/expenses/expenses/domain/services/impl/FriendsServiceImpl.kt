@@ -1,7 +1,8 @@
-package com.danisanga.shared.expenses.expenses.infrastructure.services.impl
+package com.danisanga.shared.expenses.expenses.domain.services.impl
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendException
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendNotFoundException
 import com.danisanga.shared.expenses.expenses.domain.repositories.FriendsRepository
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
@@ -13,8 +14,10 @@ import kotlin.jvm.optionals.getOrNull
 class FriendsServiceImpl (
         private val friendsRepository: FriendsRepository
 ): FriendsService {
-    override fun createFriend(friend: Friend): Friend? {
+    @Throws(FriendException::class)
+    override fun createFriend(friend: Friend): Friend {
         return friendsRepository.save(friend)
+                ?: throw FriendException("Something was wrong creating this Friend!")
     }
 
     override fun getFriend(id: UUID): Friend? {
@@ -26,7 +29,9 @@ class FriendsServiceImpl (
         return getFriend(id) ?: throw FriendNotFoundException("This is not your Friend!")
     }
 
-    override fun getFriendsForParty(party: Party): List<Friend>? {
+    override fun getFriendsForParty(party: Party): List<UUID> {
         return friendsRepository.getFriendsForParty(party)
+                .map { friend -> friend.id!! }
+                .toList()
     }
 }

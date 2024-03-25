@@ -1,6 +1,7 @@
-package com.danisanga.shared.expenses.expenses.infrastructure.services.impl
+package com.danisanga.shared.expenses.expenses.domain.services.impl
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyException
 import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyNotFoundException
 import com.danisanga.shared.expenses.expenses.domain.repositories.PartiesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
@@ -12,8 +13,11 @@ import kotlin.jvm.optionals.getOrNull
 class PartiesServiceImpl (
         private val partiesRepository: PartiesRepository
 ): PartiesService {
-    override fun createParty(party: Party): Party? {
+    @Throws(PartyException::class)
+
+    override fun createParty(party: Party): Party {
         return partiesRepository.save(party)
+                ?: throw PartyException("Something was wrong creating this Party!")
     }
 
     override fun getParty(id: UUID): Party? {
@@ -22,6 +26,7 @@ class PartiesServiceImpl (
 
     @Throws(PartyNotFoundException::class)
     override fun getPartyOrThrowException(id: UUID): Party {
-        return getParty(id) ?: throw PartyNotFoundException("This Party does not exists!")
+        return getParty(id)
+                ?: throw PartyNotFoundException("This Party does not exists!")
     }
 }

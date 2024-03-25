@@ -1,16 +1,10 @@
 package com.danisanga.shared.expenses.expenses.application.dtos
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import io.micronaut.serde.annotation.Serdeable
-import java.time.LocalDate
+import jakarta.validation.constraints.NotBlank
 
 @Serdeable
 data class CreatePartyWsDTO(
+        @NotBlank
         var name: String
-)
-
-fun CreatePartyWsDTO.toDomain() = Party(
-        id = null,
-        name = name,
-        creationTime = LocalDate.now()
 )

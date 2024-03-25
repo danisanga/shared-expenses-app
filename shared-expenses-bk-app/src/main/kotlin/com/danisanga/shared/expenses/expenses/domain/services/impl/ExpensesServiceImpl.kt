@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.infrastructure.services.impl
+package com.danisanga.shared.expenses.expenses.domain.services.impl
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
@@ -8,7 +8,6 @@ import com.danisanga.shared.expenses.expenses.domain.repositories.ExpensesReposi
 import com.danisanga.shared.expenses.expenses.domain.services.ExpensesService
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import jakarta.inject.Singleton
-import kotlin.jvm.Throws
 
 @Singleton
 class ExpensesServiceImpl(
@@ -19,17 +18,17 @@ class ExpensesServiceImpl(
     @Throws(ExpenseException::class)
     override fun createExpense(expense: Expense): Expense? {
         val friendsForParty = friendsService.getFriendsForParty(expense.party!!)
-        if (friendsForParty != null && !friendsForParty.contains(expense.friend!!)) {
+        if (!friendsForParty.contains(expense.friend?.id)) {
             throw ExpenseException("Expense cannot be added to this party")
         }
         return expenseRepository.save(expense)
     }
 
-    override fun getExpensesForFriend(friend: Friend?): List<Expense>? {
+    override fun getExpensesForFriend(friend: Friend?): List<Expense> {
         return expenseRepository.getExpensesForFriend(friend)
     }
 
-    override fun getExpensesForParty(party: Party?): List<Expense>? {
+    override fun getExpensesForParty(party: Party?): List<Expense> {
         return expenseRepository.getExpensesForParty(party)
     }
 

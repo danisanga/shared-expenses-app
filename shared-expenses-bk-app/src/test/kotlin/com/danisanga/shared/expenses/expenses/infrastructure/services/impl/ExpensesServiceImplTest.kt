@@ -5,6 +5,7 @@ import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.repositories.ExpensesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
+import com.danisanga.shared.expenses.expenses.domain.services.impl.ExpensesServiceImpl
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.mockk
