@@ -33,8 +33,7 @@ class ExpensesServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         val expenseStub = Expense(
                 EXPENSE_UUID,
@@ -50,8 +49,8 @@ class ExpensesServiceImplTest {
 
         val result = testObj.getExpensesForFriend(friendStub)
 
-        assert(result?.size == 1)
-        assert(result?.get(0)!! == expenseStub)
+        assert(result.size == 1)
+        assert(result[0] == expenseStub)
     }
 
     @Test
@@ -61,7 +60,6 @@ class ExpensesServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
         val expenseStub = Expense(
@@ -78,8 +76,8 @@ class ExpensesServiceImplTest {
 
         val result = testObj.getExpensesForParty(partyStub)
 
-        assert(result?.size == 1)
-        assert(result?.get(0)!! == expenseStub)
+        assert(result.size == 1)
+        assert(result[0] == expenseStub)
     }
 
     @Test
@@ -88,7 +86,6 @@ class ExpensesServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
         val friendStub = Friend(
@@ -96,8 +93,7 @@ class ExpensesServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                partyStub,
-                emptySet()
+                partyStub
         )
         val expenseStub = Expense(
                 EXPENSE_UUID,
@@ -112,7 +108,7 @@ class ExpensesServiceImplTest {
         } returns expenseStub
         every {
             friendsService.getFriendsForParty(partyStub)
-        } returns listOf(friendStub)
+        } returns listOf(FRIEND_UUID)
 
         val result = testObj.createExpense(expenseStub)
 

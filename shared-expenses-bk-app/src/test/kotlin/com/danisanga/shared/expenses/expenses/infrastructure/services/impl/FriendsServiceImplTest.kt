@@ -31,8 +31,7 @@ class FriendsServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         every {
             friendsRepository.findById(FRIEND_UUID)
@@ -60,16 +59,14 @@ class FriendsServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         val expectedFriend = Friend(
                 FRIEND_UUID,
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
 
         every {
@@ -78,8 +75,8 @@ class FriendsServiceImplTest {
 
         val result = testObj.createFriend(friendStub)
 
-        assert(result?.name == "friend_name")
-        assert(result?.email == "friend_email")
+        assert(result.name == "friend_name")
+        assert(result.email == "friend_email")
     }
 
     @Test
@@ -88,7 +85,6 @@ class FriendsServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
         val friendStub = Friend(
@@ -96,8 +92,7 @@ class FriendsServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         every {
             friendsRepository.getFriendsForParty(partyStub)
@@ -105,7 +100,7 @@ class FriendsServiceImplTest {
 
         val result = testObj.getFriendsForParty(partyStub)
 
-        assert(result?.size == 1)
+        assert(result.size == 1)
     }
 
 }

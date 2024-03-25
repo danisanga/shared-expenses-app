@@ -24,7 +24,6 @@ class ExpensesConverter(
         )
     }
 
-    // TODO - Add more attributes to expenses response.
     fun convertToApplication(expense: Expense): ExpenseResponseWsDTO {
         return ExpenseResponseWsDTO(
                 expense.id,

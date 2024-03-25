@@ -28,7 +28,6 @@ class PartiesServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
         every {
@@ -56,14 +55,12 @@ class PartiesServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
         val expectedParty = Party(
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                emptySet(),
                 emptySet()
         )
 

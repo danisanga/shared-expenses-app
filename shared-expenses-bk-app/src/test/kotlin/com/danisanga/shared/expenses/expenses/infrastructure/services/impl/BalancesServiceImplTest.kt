@@ -18,6 +18,7 @@ import java.util.*
 class BalancesServiceImplTest {
     val PARTY_UUID = UUID.randomUUID()
     val FRIEND_UUID = UUID.randomUUID()
+    val OTHER_FRIEND_UUID = UUID.randomUUID()
     val EXPENSE_UUID = UUID.randomUUID()
 
     private val expenseService: ExpensesService = mockk<ExpensesService>()
@@ -34,20 +35,18 @@ class BalancesServiceImplTest {
                 "friend_name",
                 "friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         val otherFriendStub = Friend(
-                FRIEND_UUID,
+                OTHER_FRIEND_UUID,
                 "other_friend_name",
                 "other_friend_email",
                 LocalDate.now(),
-                null,
-                emptySet()
+                null
         )
         val expenseStub = Expense(
                 EXPENSE_UUID,
-                10.05,
+                10.0,
                 "expense_desc",
                 LocalDate.now(),
                 null,
@@ -57,8 +56,7 @@ class BalancesServiceImplTest {
                 PARTY_UUID,
                 "party_name",
                 LocalDate.now(),
-                setOf(expenseStub),
-                setOf(friendStub, otherFriendStub)
+                setOf(expenseStub)
         )
         every {
             partiesService.getPartyOrThrowException(PARTY_UUID)
@@ -68,20 +66,28 @@ class BalancesServiceImplTest {
         } returns listOf(expenseStub)
         every {
             friendService.getFriendsForParty(partyStub)
-        } returns listOf(friendStub, otherFriendStub)
+        } returns listOf(FRIEND_UUID, OTHER_FRIEND_UUID)
         every {
             expenseService.getExpensesForFriend(friendStub)
         } returns listOf(expenseStub)
         every {
             expenseService.getExpensesForFriend(otherFriendStub)
         } returns listOf()
+        every {
+            friendService.getFriendOrThrowException(FRIEND_UUID)
+        } returns friendStub
+        every {
+            friendService.getFriendOrThrowException(OTHER_FRIEND_UUID)
+        } returns otherFriendStub
 
         val result = testObj.getTotalBalance(PARTY_UUID)
 
-        assert(result?.friendBalances?.get(0)?.quantity == 5.0)
-        assert(result?.friendBalances?.get(0)?.friend?.name == "friend_name")
-        assert(result?.friendBalances?.get(1)?.quantity == -5.0)
-        assert(result?.friendBalances?.get(1)?.friend?.name == "other_friend_name")
+        assert(result.friendBalances[0].quantity == 5.0)
+        assert(result.friendBalances[0].friend.id == FRIEND_UUID)
+        assert(result.friendBalances[0].friend.name == "friend_name")
+        assert(result.friendBalances[1].quantity == -5.0)
+        assert(result.friendBalances[1].friend.id == OTHER_FRIEND_UUID)
+        assert(result.friendBalances[1].friend.name == "other_friend_name")
 
     }
 
