@@ -23,4 +23,10 @@ open class BalancesController (
         val totalBalance = balancesService.getTotalBalance(partyId)
         return HttpResponse.ok(balancesConverter.convertToApplication(totalBalance!!))
     }
+
+    @Get("/{partyId}/payments")
+    open fun getPayments(@QueryValue @NotNull partyId: UUID) : HttpResponse<Any> {
+        balancesService.getPayments(partyId)
+        return HttpResponse.ok()
+    }
 }

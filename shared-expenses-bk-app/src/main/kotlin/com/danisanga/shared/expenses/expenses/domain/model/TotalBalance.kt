@@ -6,7 +6,3 @@ class TotalBalance(
 
     var friendBalances: List<FriendBalance>
 )
-
-fun TotalBalance.toApplication() = TotalBalanceResponseWsDTO(
-        friendBalances = friendBalances
-)

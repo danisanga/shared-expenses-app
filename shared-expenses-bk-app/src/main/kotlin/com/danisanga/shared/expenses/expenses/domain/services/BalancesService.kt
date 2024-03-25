@@ -5,4 +5,6 @@ import java.util.*
 
 interface BalancesService {
     fun getTotalBalance(partyId: UUID): TotalBalance?
+
+    fun getPayments(partyId: UUID): Any
 }
