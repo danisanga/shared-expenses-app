@@ -19,7 +19,7 @@ export class BalanceComponent implements OnInit {
   constructor(private balancesService: BalancesService) { }
 
   ngOnInit() {
-    this.balancesService.getData().subscribe((data: TotalBalance) => {
+    this.balancesService.getData("b768d934-6a66-414d-8461-5d9c53b386aa").subscribe((data: TotalBalance) => {
       this.totalBalance = data;
     });
   }

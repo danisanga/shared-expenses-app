@@ -19,7 +19,7 @@ export class PartyComponent implements OnInit {
   constructor(private partiesService: PartiesService) { }
 
   ngOnInit() {
-    this.partiesService.getData().subscribe((data: Party) => {
+    this.partiesService.getData("b768d934-6a66-414d-8461-5d9c53b386aa").subscribe((data: Party) => {
       this.party = data;
     });
   }
