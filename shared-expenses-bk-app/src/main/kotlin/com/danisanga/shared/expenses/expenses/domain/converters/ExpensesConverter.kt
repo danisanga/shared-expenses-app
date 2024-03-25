@@ -6,6 +6,7 @@ import com.danisanga.shared.expenses.expenses.domain.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
+import java.time.LocalDate
 
 @Singleton
 class ExpensesConverter(
@@ -18,7 +19,7 @@ class ExpensesConverter(
                 null,
                 createExpenseWsDTO.quantity,
                 createExpenseWsDTO.description,
-                null,
+                LocalDate.now(),
                 partiesService.getPartyOrThrowException(createExpenseWsDTO.party),
                 friendService.getFriendOrThrowException(createExpenseWsDTO.friend)
         )

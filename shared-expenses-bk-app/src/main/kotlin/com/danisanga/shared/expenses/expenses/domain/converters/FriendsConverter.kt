@@ -5,6 +5,7 @@ import com.danisanga.shared.expenses.expenses.application.dtos.FriendResponseWsD
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
+import java.time.LocalDate
 
 @Singleton
 class FriendsConverter(
@@ -16,7 +17,7 @@ class FriendsConverter(
                 null,
                 addFriendWsDTO.name,
                 addFriendWsDTO.email,
-                null,
+                LocalDate.now(),
                 partiesService.getPartyOrThrowException(addFriendWsDTO.party)
         )
     }
