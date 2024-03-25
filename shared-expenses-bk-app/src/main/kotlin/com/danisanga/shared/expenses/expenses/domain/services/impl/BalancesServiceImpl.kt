@@ -40,7 +40,7 @@ class BalancesServiceImpl(
         val sumOfBalance = getFriendBalance(sumOf, totalSpent, numberOfFriends)
         val friendBalance = FriendBalance(
                 friend,
-                sumOfBalance
+                Math.round(sumOfBalance * 100.0) / 100.0
         )
         return friendBalance
     }
