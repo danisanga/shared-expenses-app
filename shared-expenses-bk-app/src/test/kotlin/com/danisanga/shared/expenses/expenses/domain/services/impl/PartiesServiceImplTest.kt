@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.infrastructure.services.impl
+package com.danisanga.shared.expenses.expenses.domain.services.impl
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyNotFoundException
