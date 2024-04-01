@@ -3,8 +3,7 @@ package com.danisanga.shared.expenses.expenses.domain.services.impl
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendNotFoundException
-import com.danisanga.shared.expenses.expenses.domain.repositories.FriendsRepository
-import com.danisanga.shared.expenses.expenses.domain.services.impl.FriendsServiceImpl
+import com.danisanga.shared.expenses.expenses.infrastructure.repositories.FriendsRepository
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.every
 import io.mockk.mockk

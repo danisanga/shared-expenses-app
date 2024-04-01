@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.domain.repositories
+package com.danisanga.shared.expenses.expenses.infrastructure.repositories
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import io.micronaut.data.annotation.Repository

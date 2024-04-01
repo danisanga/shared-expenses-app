@@ -4,7 +4,7 @@ import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendException
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendNotFoundException
-import com.danisanga.shared.expenses.expenses.domain.repositories.FriendsRepository
+import com.danisanga.shared.expenses.expenses.infrastructure.repositories.FriendsRepository
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import jakarta.inject.Singleton
 import java.util.*

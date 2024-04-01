@@ -43,6 +43,7 @@ class PendingPaymentsServiceImpl(
         return pendingPayments
     }
 
+    // TODO - Pending refactor.
     private fun getDebtorPayment(debtors: MutableList<FriendBalance>,
                                  recipients: MutableList<FriendBalance>,
                                  recipient: FriendBalance,

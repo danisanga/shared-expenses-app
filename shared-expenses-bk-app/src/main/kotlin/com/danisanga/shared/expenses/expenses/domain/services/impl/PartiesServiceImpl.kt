@@ -3,7 +3,7 @@ package com.danisanga.shared.expenses.expenses.domain.services.impl
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyException
 import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyNotFoundException
-import com.danisanga.shared.expenses.expenses.domain.repositories.PartiesRepository
+import com.danisanga.shared.expenses.expenses.infrastructure.repositories.PartiesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
 import java.util.*

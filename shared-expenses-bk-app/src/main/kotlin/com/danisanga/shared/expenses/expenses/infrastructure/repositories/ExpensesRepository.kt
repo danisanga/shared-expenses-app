@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.domain.repositories
+package com.danisanga.shared.expenses.expenses.infrastructure.repositories
 
 import com.danisanga.shared.expenses.expenses.domain.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend

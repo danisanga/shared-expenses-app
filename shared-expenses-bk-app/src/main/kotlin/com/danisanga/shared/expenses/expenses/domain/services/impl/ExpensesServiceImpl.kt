@@ -4,7 +4,7 @@ import com.danisanga.shared.expenses.expenses.domain.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.ExpenseException
-import com.danisanga.shared.expenses.expenses.domain.repositories.ExpensesRepository
+import com.danisanga.shared.expenses.expenses.infrastructure.repositories.ExpensesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.ExpensesService
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import jakarta.inject.Singleton
