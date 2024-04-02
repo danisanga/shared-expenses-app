@@ -25,7 +25,7 @@ open class ExpensesController(
     private val expensesConverter: ExpensesConverter
 ) {
 
-    @Post("/create")
+    @Post
     open fun createExpense(@Body @Valid createExpenseWsDTO: CreateExpenseWsDTO): HttpResponse<ExpenseResponseWsDTO> {
         val expense = expensesConverter.convertToDomain(createExpenseWsDTO)
         expensesService.createExpense(expense)

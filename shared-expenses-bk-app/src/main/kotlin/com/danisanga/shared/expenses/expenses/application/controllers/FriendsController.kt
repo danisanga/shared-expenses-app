@@ -21,7 +21,7 @@ open class FriendsController(
         private val friendsConverter: FriendsConverter
 ) {
 
-    @Post("/add-to-party")
+    @Post
     open fun createAndAddFriendToParty(@Body @Valid request: AddFriendWsDTO) : HttpResponse<FriendResponseWsDTO> {
         val friendToDomain = friendsConverter.convertToDomain(request)
         val friend = friendsService.createFriend(friendToDomain)

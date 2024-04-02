@@ -20,7 +20,7 @@ open class PartiesController (
         private val partiesService: PartiesService,
         private val partiesConverter: PartiesConverter
 ) {
-    @Post("/create")
+    @Post
     open fun createParty(@Body @Valid createPartyWsDTO: CreatePartyWsDTO) : HttpResponse<PartyResponseWsDTO> {
         val party = partiesService.createParty(partiesConverter.convertToDomain(createPartyWsDTO))
         return HttpResponse
