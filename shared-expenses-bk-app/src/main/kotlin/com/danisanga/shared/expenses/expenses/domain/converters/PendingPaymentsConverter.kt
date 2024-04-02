@@ -8,9 +8,17 @@ import jakarta.inject.Singleton
 class PendingPaymentsConverter {
     fun convertToApplication(pendingPayment: PendingPayment): PendingPaymentResponseWsDTO {
         return PendingPaymentResponseWsDTO(
-                pendingPayment.from,
-                pendingPayment.to,
-                pendingPayment.quantity
+            pendingPayment.from,
+            pendingPayment.to,
+            pendingPayment.quantity
         )
+    }
+
+    fun convertAllToApplication(pendingPayments: List<PendingPayment>?): List<PendingPaymentResponseWsDTO> {
+        return if (pendingPayments.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            pendingPayments.map { pendingPayment -> convertToApplication(pendingPayment) }
+        }
     }
 }

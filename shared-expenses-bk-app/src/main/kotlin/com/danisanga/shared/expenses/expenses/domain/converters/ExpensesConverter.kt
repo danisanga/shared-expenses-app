@@ -10,26 +10,34 @@ import java.time.LocalDate
 
 @Singleton
 class ExpensesConverter(
-        private val partiesService: PartiesService,
-        private val friendService: FriendsService
+    private val partiesService: PartiesService,
+    private val friendService: FriendsService
 ) {
 
     fun convertToDomain(createExpenseWsDTO: CreateExpenseWsDTO): Expense {
         return Expense(
-                null,
-                createExpenseWsDTO.quantity,
-                createExpenseWsDTO.description,
-                LocalDate.now(),
-                partiesService.getPartyOrThrowException(createExpenseWsDTO.party),
-                friendService.getFriendOrThrowException(createExpenseWsDTO.friend)
+            null,
+            createExpenseWsDTO.quantity,
+            createExpenseWsDTO.description,
+            LocalDate.now(),
+            partiesService.getPartyOrThrowException(createExpenseWsDTO.party),
+            friendService.getFriendOrThrowException(createExpenseWsDTO.friend)
         )
     }
 
     fun convertToApplication(expense: Expense): ExpenseResponseWsDTO {
         return ExpenseResponseWsDTO(
-                expense.id,
-                expense.quantity,
-                expense.friend
+            expense.id,
+            expense.quantity,
+            expense.friend
         )
+    }
+
+    fun convertAllToApplication(expenses: List<Expense>?): List<ExpenseResponseWsDTO> {
+        return if (expenses.isNullOrEmpty()) {
+            emptyList()
+        } else {
+            expenses.map { expense -> convertToApplication(expense) }
+        }
     }
 }
