@@ -1,8 +1,8 @@
 package com.danisanga.shared.expenses.expenses.domain.services.impl
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
-import com.danisanga.shared.expenses.expenses.domain.entities.Friend
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Expense
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Party
 import com.danisanga.shared.expenses.expenses.infrastructure.repositories.ExpensesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
@@ -35,12 +35,11 @@ class ExpensesServiceImplTest {
                 null
         )
         val expenseStub = Expense(
-                EXPENSE_UUID,
-                10.05,
-                "expense_desc",
-                LocalDate.now(),
-                null,
-                friendStub
+            EXPENSE_UUID,
+            10.05,
+            "expense_desc",
+            null,
+            friendStub
         )
         every {
             expenseRepository.getExpensesForFriend(friendStub)
@@ -62,12 +61,11 @@ class ExpensesServiceImplTest {
                 emptySet()
         )
         val expenseStub = Expense(
-                EXPENSE_UUID,
-                10.05,
-                "expense_desc",
-                LocalDate.now(),
-                partyStub,
-                null
+            EXPENSE_UUID,
+            10.05,
+            "expense_desc",
+            partyStub,
+            null
         )
         every {
             expenseRepository.getExpensesForParty(partyStub)
@@ -95,12 +93,11 @@ class ExpensesServiceImplTest {
                 partyStub
         )
         val expenseStub = Expense(
-                EXPENSE_UUID,
-                10.05,
-                "expense_desc",
-                LocalDate.now(),
-                partyStub,
-                friendStub
+            EXPENSE_UUID,
+            10.05,
+            "expense_desc",
+            partyStub,
+            friendStub
         )
         every {
             expenseRepository.save(expenseStub)

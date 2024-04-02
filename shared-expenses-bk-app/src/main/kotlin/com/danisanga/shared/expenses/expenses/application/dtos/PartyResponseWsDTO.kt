@@ -1,6 +1,6 @@
 package com.danisanga.shared.expenses.expenses.application.dtos
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Expense
 import io.micronaut.serde.annotation.Serdeable
 import java.time.LocalDate
 import java.util.*

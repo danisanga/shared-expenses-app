@@ -1,11 +1,11 @@
 package com.danisanga.shared.expenses.expenses.domain.model
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Friend
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.validation.constraints.NotNull
 
 @Serdeable
-class FriendBalance(
+data class FriendBalance(
     @NotNull
     var friend: Friend,
     @NotNull

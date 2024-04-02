@@ -2,7 +2,7 @@ package com.danisanga.shared.expenses.expenses.domain.converters
 
 import com.danisanga.shared.expenses.expenses.application.dtos.CreatePartyWsDTO
 import com.danisanga.shared.expenses.expenses.application.dtos.PartyResponseWsDTO
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Party
 import jakarta.inject.Singleton
 import java.time.LocalDate
 

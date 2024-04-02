@@ -1,6 +1,6 @@
 package com.danisanga.shared.expenses.expenses.domain.services.impl
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.PartyNotFoundException
 import com.danisanga.shared.expenses.expenses.infrastructure.repositories.PartiesRepository
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest

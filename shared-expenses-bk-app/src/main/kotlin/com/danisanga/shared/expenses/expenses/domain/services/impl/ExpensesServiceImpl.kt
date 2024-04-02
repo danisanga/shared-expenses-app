@@ -1,8 +1,8 @@
 package com.danisanga.shared.expenses.expenses.domain.services.impl
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
-import com.danisanga.shared.expenses.expenses.domain.entities.Friend
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Expense
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.ExpenseException
 import com.danisanga.shared.expenses.expenses.infrastructure.repositories.ExpensesRepository
 import com.danisanga.shared.expenses.expenses.domain.services.ExpensesService

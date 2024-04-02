@@ -1,7 +1,7 @@
 package com.danisanga.shared.expenses.expenses.domain.services.impl
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Friend
-import com.danisanga.shared.expenses.expenses.domain.entities.Party
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Party
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendException
 import com.danisanga.shared.expenses.expenses.domain.exceptions.FriendNotFoundException
 import com.danisanga.shared.expenses.expenses.infrastructure.repositories.FriendsRepository

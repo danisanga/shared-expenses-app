@@ -1,6 +1,6 @@
 package com.danisanga.shared.expenses.expenses.domain.services.impl
 
-import com.danisanga.shared.expenses.expenses.domain.entities.Friend
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Friend
 import com.danisanga.shared.expenses.expenses.domain.model.FriendBalance
 import com.danisanga.shared.expenses.expenses.domain.model.TotalBalance
 import com.danisanga.shared.expenses.expenses.domain.services.BalancesService

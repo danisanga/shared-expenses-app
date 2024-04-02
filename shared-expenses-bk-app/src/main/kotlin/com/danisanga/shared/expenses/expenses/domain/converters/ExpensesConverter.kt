@@ -2,11 +2,10 @@ package com.danisanga.shared.expenses.expenses.domain.converters
 
 import com.danisanga.shared.expenses.expenses.application.dtos.CreateExpenseWsDTO
 import com.danisanga.shared.expenses.expenses.application.dtos.ExpenseResponseWsDTO
-import com.danisanga.shared.expenses.expenses.domain.entities.Expense
+import com.danisanga.shared.expenses.expenses.domain.model.entities.Expense
 import com.danisanga.shared.expenses.expenses.domain.services.FriendsService
 import com.danisanga.shared.expenses.expenses.domain.services.PartiesService
 import jakarta.inject.Singleton
-import java.time.LocalDate
 
 @Singleton
 class ExpensesConverter(
@@ -19,7 +18,6 @@ class ExpensesConverter(
             null,
             createExpenseWsDTO.quantity,
             createExpenseWsDTO.description,
-            LocalDate.now(),
             partiesService.getPartyOrThrowException(createExpenseWsDTO.party),
             friendService.getFriendOrThrowException(createExpenseWsDTO.friend)
         )

@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.domain.entities
+package com.danisanga.shared.expenses.expenses.domain.model.entities
 
 import jakarta.persistence.*
 import java.time.LocalDate

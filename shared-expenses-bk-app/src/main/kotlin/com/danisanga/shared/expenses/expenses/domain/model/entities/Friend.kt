@@ -1,4 +1,4 @@
-package com.danisanga.shared.expenses.expenses.domain.entities
+package com.danisanga.shared.expenses.expenses.domain.model.entities
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import io.micronaut.serde.annotation.Serdeable
@@ -9,7 +9,7 @@ import java.util.*
 @Serdeable
 @Entity
 @Table(name = "friends")
-class Friend(
+data class Friend(
         @Id
         @GeneratedValue
         var id: UUID?,
