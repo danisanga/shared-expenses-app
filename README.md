@@ -5,9 +5,24 @@
 Side project to learn Kotlin and Micronaut (backend) and Angular (frontend).
 
 ## Pending tasks
-- [x] Backend basic structure.
-- [x] Dockerizing API Rest.
-- [x] Creating DB schema.
-- [ ] Refactoring. Calculate pending payments (backend side).
+
+### Backend (API)
+- [x] API basic structure.
+- [ ] Refactoring. Calculate pending payments and balances service (backend side).
+
+### Frontend (app)
 - [ ] Frontend app.
+
+### Testing
+- [ ] Add more test cases.
+- [ ] Add integration tests.
+
+### Database
+- [x] Creating DB schema.
+
+### Deployment & Containerization
+- [x] Dockerizing API Rest.
 - [x] Dockerizing frontend app.
+
+### Architecture
+- [ ] Rethink architecture.
